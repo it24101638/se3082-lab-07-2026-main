@@ -25,3 +25,214 @@ Ex 6 (Scatter + Scan)  BEST FOR: "Need global offsets & ordering"
   |- Fast (O(log P) tree algorithm)
   |- Each rank gets different prefix_sum
   |- Enables load balancing, global indexing, cumulative results
+
+
+
+
+Ex 2 with 2,4 and 8 processes:
+
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise02$ mpicc -o ex2 ex2.c 
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise02$ mpirun -np 2 ./ex2
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 500000) => local_sum = 375000250000
+  Rank 0: summed indices [0, 500000) => local_sum = 125000250000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0027 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise02$ mpirun -np 4 ./ex2
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0021 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise02$ mpirun -np 6 ./ex2
+Root filled array with values 1 to 1000000
+  Rank 4: summed indices [0, 166666) => local_sum = 124999083335
+  Rank 3: summed indices [0, 166666) => local_sum = 97221527779
+  Rank 1: summed indices [0, 166666) => local_sum = 41666416667
+  Rank 0: summed indices [0, 166666) => local_sum = 13888861111
+
+[Bcast] Total sum   = 499996500006
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = NO
+[Bcast] Time        = 0.0029 sec
+  Rank 5: summed indices [0, 166666) => local_sum = 152776638891
+  Rank 2: summed indices [0, 166666) => local_sum = 69443972223
+
+
+
+
+
+Ex 3 with 2,4 and 8 processes:
+
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise03$ mpicc -o ex3 ex3.c 
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise03$ mpirun -np 2 ./ex3
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 500000) => local_sum = 375000250000
+  Rank 0: summed indices [0, 500000) => local_sum = 125000250000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0027 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise03$ mpirun -np 4 ./ex3
+Root filled array with values 1 to 1000000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0086 sec
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise03$ mpirun -np 6 ./ex3
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 166666) => local_sum = 41666416667
+  Rank 2: summed indices [0, 166666) => local_sum = 69443972223
+  Rank 5: summed indices [0, 166666) => local_sum = 152776638891
+  Rank 3: summed indices [0, 166666) => local_sum = 97221527779
+  Rank 4: summed indices [0, 166666) => local_sum = 124999083335
+  Rank 0: summed indices [0, 166666) => local_sum = 13888861111
+
+[Bcast] Total sum   = 499996500006
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = NO
+[Bcast] Time        = 0.0040 sec
+
+
+
+Ex 4 with 2,4 and 8 processes:
+
+
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpicc -o ex4 ex4.c 
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpirun -np 2 ./ex4
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 500000) => local_sum = 375000250000
+  Rank 0: summed indices [0, 500000) => local_sum = 125000250000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0132 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpirun -np 4 ./ex4
+Root filled array with values 1 to 1000000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0051 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpirun -np 6 ./ex4
+  Rank 3: summed indices [0, 166666) => local_sum = 97221527779
+  Rank 5: summed indices [0, 166666) => local_sum = 152776638891
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 166666) => local_sum = 41666416667
+  Rank 2: summed indices [0, 166666) => local_sum = 69443972223
+  Rank 0: summed indices [0, 166666) => local_sum = 13888861111
+
+[Bcast] Total sum   = 499996500006
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = NO
+[Bcast] Time        = 0.0022 sec
+  Rank 4: summed indices [0, 166666) => local_sum = 124999083335
+
+
+
+
+Ex 5 with 2,4 and 8 processes:
+
+
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise05$ mpicc -o ex5 ex5.c 
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise05$ mpirun -np 2 ./ex5
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 500000) => local_sum = 375000250000
+  Rank 0: summed indices [0, 500000) => local_sum = 125000250000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0046 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise05$ mpirun -np 4 ./ex5
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0027 sec
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise05$ mpirun -np 6 ./ex5
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 166666) => local_sum = 41666416667
+  Rank 3: summed indices [0, 166666) => local_sum = 97221527779
+  Rank 5: summed indices [0, 166666) => local_sum = 152776638891
+  Rank 2: summed indices [0, 166666) => local_sum = 69443972223
+  Rank 0: summed indices [0, 166666) => local_sum = 13888861111
+
+[Bcast] Total sum   = 499996500006
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = NO
+[Bcast] Time        = 0.0131 sec
+  Rank 4: summed indices [0, 166666) => local_sum = 124999083335
+
+
+
+Ex 6 with 2,4 and 8 processes:
+
+
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise06$ mpicc -o ex6 ex6.c 
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise06$ mpirun -np 2 ./ex6
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 500000) => local_sum = 375000250000
+Rank 1: local_sum=375000250000, sum_before_me=125000250000, prefix_sum=500000500000, expected=500000500000, match=YES
+[Scan] Last rank prefix_sum (global total) = 500000500000
+[Scan] Expected global total            = 500000500000
+[Scan] Correct? = YES
+  Rank 0: summed indices [0, 500000) => local_sum = 125000250000
+Rank 0: local_sum=125000250000, sum_before_me=0, prefix_sum=125000250000, expected=125000250000, match=YES
+[Bcast] Time        = 0.0043 sec
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise06$ mpirun -np 4 ./ex6
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+Rank 0: local_sum=31250125000, sum_before_me=0, prefix_sum=31250125000, expected=31250125000, match=YES
+[Bcast] Time        = 0.0118 sec
+Rank 3: local_sum=218750125000, sum_before_me=281250375000, prefix_sum=500000500000, expected=500000500000, match=YES
+[Scan] Last rank prefix_sum (global total) = 500000500000
+[Scan] Expected global total            = 500000500000
+[Scan] Correct? = YES
+Rank 1: local_sum=93750125000, sum_before_me=31250125000, prefix_sum=125000250000, expected=125000250000, match=YES
+Rank 2: local_sum=156250125000, sum_before_me=125000250000, prefix_sum=281250375000, expected=281250375000, match=YES
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise06$ mpirun -np 6 ./ex6
+  Rank 3: summed indices [0, 166666) => local_sum = 97221527779
+  Rank 4: summed indices [0, 166666) => local_sum = 124999083335
+  Rank 5: summed indices [0, 166666) => local_sum = 152776638891
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 166666) => local_sum = 41666416667
+Rank 1: local_sum=41666416667, sum_before_me=13888861111, prefix_sum=55555277778, expected=55555277778, match=YES
+  Rank 0: summed indices [0, 166666) => local_sum = 13888861111
+Rank 0: local_sum=13888861111, sum_before_me=0, prefix_sum=13888861111, expected=13888861111, match=YES
+[Bcast] Time        = 0.0121 sec
+  Rank 2: summed indices [0, 166666) => local_sum = 69443972223
+Rank 2: local_sum=69443972223, sum_before_me=55555277778, prefix_sum=124999250001, expected=124999250001, match=YES
+Rank 5: local_sum=152776638891, sum_before_me=347219861115, prefix_sum=499996500006, expected=499996500006, match=YES
+[Scan] Last rank prefix_sum (global total) = 499996500006
+[Scan] Expected global total            = 500000500000
+Rank 3: local_sum=97221527779, sum_before_me=124999250001, prefix_sum=222220777780, expected=222220777780, match=YES
+Rank 4: local_sum=124999083335, sum_before_me=222220777780, prefix_sum=347219861115, expected=347219861115, match=YES
+[Scan] Correct? = NO

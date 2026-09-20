@@ -1,0 +1,27 @@
+Ex 1 (Bcast + Send/Recv)
+  |- Slowest (O(P) sequential)
+  |- Memory hog (all processes store full array)
+
+Ex 2 (Scatter + Send/Recv)
+  |- Still slow (O(P) sequential)
+  |- Better memory (chunks only)
+
+Ex 3 (Scatter + Gather)
+  |- Fast (O(log P) tree algorithm)
+  |- Single result array on root
+  |- Good when you need all individual values
+
+Ex 4 (Scatter + Reduce)  BEST FOR: "Need total on root"
+  |- Fast (O(log P) tree algorithm)
+  |- Single result value on root
+  |- Minimal computation overhead
+
+Ex 5 (Scatter + Allreduce)  BEST FOR: "All processes need global sum"
+  |- Fast (O(log P) tree algorithm)
+  |- Every process gets same result
+  |- Useful when all ranks continue processing together
+
+Ex 6 (Scatter + Scan)  BEST FOR: "Need global offsets & ordering"
+  |- Fast (O(log P) tree algorithm)
+  |- Each rank gets different prefix_sum
+  |- Enables load balancing, global indexing, cumulative results

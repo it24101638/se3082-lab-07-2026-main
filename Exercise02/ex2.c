@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
     }
 
     free(array);
+    free(local_chunk);
     MPI_Finalize();
     return 0;
 }

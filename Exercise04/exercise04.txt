@@ -1,4 +1,3 @@
-
 thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpicc -o ex4 ex4.c 
 thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise04$ mpirun -np 4 ./ex4
 Root filled array with values 1 to 1000000

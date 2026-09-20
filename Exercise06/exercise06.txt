@@ -1,0 +1,14 @@
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main/Exercise06$ mpirun -np 4 ./ex6
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+Rank 1: local_sum=93750125000, sum_before_me=31250125000, prefix_sum=125000250000, expected=125000250000, match=YES
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+Rank 2: local_sum=156250125000, sum_before_me=125000250000, prefix_sum=281250375000, expected=281250375000, match=YES
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+Rank 3: local_sum=218750125000, sum_before_me=281250375000, prefix_sum=500000500000, expected=500000500000, match=YES
+[Scan] Last rank prefix_sum (global total) = 500000500000
+[Scan] Expected global total            = 500000500000
+[Scan] Correct? = YES
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+Rank 0: local_sum=31250125000, sum_before_me=0, prefix_sum=31250125000, expected=31250125000, match=YES
+[Bcast] Time        = 0.0016 sec

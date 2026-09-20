@@ -1,0 +1,122 @@
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main$ make
+Compiling Exercise 1 (Bcast)...
+mpicc -O2 -Wall -o Exercise01/ex1 Exercise01/ex1.c
+Compiling Exercise 2 (Scatter)...
+mpicc -O2 -Wall -o Exercise02/ex2 Exercise02/ex2.c
+Compiling Exercise 3 (Gather)...
+mpicc -O2 -Wall -o Exercise03/ex3 Exercise03/ex3.c
+Compiling Exercise 4 (Reduce)...
+mpicc -O2 -Wall -o Exercise04/ex4 Exercise04/ex4.c
+Compiling Exercise 5 (Allreduce)...
+mpicc -O2 -Wall -o Exercise05/ex5 Exercise05/ex5.c
+Compiling Exercise 6 (Scan)...
+mpicc -O2 -Wall -o Exercise06/ex6 Exercise06/ex6.c
+Exercise06/ex6.c: In function ‘main’:
+Exercise06/ex6.c:57:19: warning: unused variable ‘expected’ [-Wunused-variable]
+   57 |         long long expected = (long long)N * (N + 1) / 2;
+      |                   ^~~~~~~~
+✓ All exercises compiled successfully
+thenul@DESKTOP-41LNESG:/mnt/d/Academics/Y3S1/Parallel_Computing/Labs/Lab7/se3082-lab-07-2026-main$ make run
+✓ All exercises compiled successfully
+
+╔══════════════════════════════════════════════════════════╗
+║  Lab 7: MPI Collective Communications - Running All      ║
+║  Processes: 4                                               ║
+╚══════════════════════════════════════════════════════════╝
+
+──────────────────────────────────────────────────────────
+Exercise 1: Broadcast + Send/Recv
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise01/ex1
+Root filled array with values 1 to 1000000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+  Rank 1: summed indices [250000, 500000) => local_sum = 93750125000
+  Rank 2: summed indices [500000, 750000) => local_sum = 156250125000
+  Rank 3: summed indices [750000, 1000000) => local_sum = 218750125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0159 sec
+
+──────────────────────────────────────────────────────────
+Exercise 2: Scatter + Send/Recv
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise02/ex2
+Root filled array with values 1 to 1000000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0014 sec
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+
+──────────────────────────────────────────────────────────
+Exercise 3: Scatter + Gather
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise03/ex3
+Root filled array with values 1 to 1000000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0089 sec
+
+──────────────────────────────────────────────────────────
+Exercise 4: Scatter + Reduce
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise04/ex4
+Root filled array with values 1 to 1000000
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0024 sec
+
+──────────────────────────────────────────────────────────
+Exercise 5: Scatter + Allreduce
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise05/ex5
+Root filled array with values 1 to 1000000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+
+[Bcast] Total sum   = 500000500000
+[Bcast] Expected    = 500000500000
+[Bcast] Correct?    = YES
+[Bcast] Time        = 0.0014 sec
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+
+──────────────────────────────────────────────────────────
+Exercise 6: Scatter + Scan
+──────────────────────────────────────────────────────────
+mpirun -np 4 Exercise06/ex6
+Root filled array with values 1 to 1000000
+  Rank 2: summed indices [0, 250000) => local_sum = 156250125000
+  Rank 1: summed indices [0, 250000) => local_sum = 93750125000
+  Rank 0: summed indices [0, 250000) => local_sum = 31250125000
+Rank 0: local_sum=31250125000, sum_before_me=0, prefix_sum=31250125000, expected=31250125000, match=YES
+[Bcast] Time        = 0.0020 sec
+Rank 1: local_sum=93750125000, sum_before_me=31250125000, prefix_sum=125000250000, expected=125000250000, match=YES
+Rank 2: local_sum=156250125000, sum_before_me=125000250000, prefix_sum=281250375000, expected=281250375000, match=YES
+  Rank 3: summed indices [0, 250000) => local_sum = 218750125000
+Rank 3: local_sum=218750125000, sum_before_me=281250375000, prefix_sum=500000500000, expected=500000500000, match=YES
+[Scan] Last rank prefix_sum (global total) = 500000500000
+[Scan] Expected global total            = 500000500000
+[Scan] Correct? = YES
+
+╔══════════════════════════════════════════════════════════╗
+║  All exercises completed                                 ║
+╚══════════════════════════════════════════════════════════╝
